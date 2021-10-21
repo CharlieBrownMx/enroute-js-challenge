@@ -1,0 +1,18 @@
+---
+version: "3"
+services:
+  db_test:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: enroute
+      MYSQL_USER: enroute
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "${HOST_IP:-0.0.0.0}:3306:3306"
+    expose:
+      - 3306
+    volumes:
+      - ${BASE_DIRECTORY:-../..}/db/data:/var/lib/mysql
+      - ${BASE_DIRECTORY:-../..}/db/initdb.d:/docker-entrypoint-initdb.d
