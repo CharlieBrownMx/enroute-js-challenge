@@ -1,0 +1,19 @@
+---
+version: "3"
+services:
+  employees_front:
+    build:
+      dockerfile: Dockerfile.prod
+      context: ${BASE_DIRECTORY:-../../..}/app/front/employees-front
+    image: employees-front-prod:latest
+    ports:
+      - published: 80
+        target: 80
+    environment:
+      NODE_ENV: production
+      PORT: 80
+      HOST: 0.0.0.0
+    healthcheck:
+        test: ["CMD", "curl", "-I", "-f", "http://localhost:80"]
+        timeout: 5s
+        retries: 10
