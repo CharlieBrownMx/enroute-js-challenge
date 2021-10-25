@@ -4,3 +4,6 @@
 [submodule "app/backend/employees-service"]
 	path = app/backend/employees-service
 	url = git@github.com:CharlieBrownMx/enroute-employees-service.git
+[submodule "app/front/employees-front"]
+	path = app/front/employees-front
+	url = git@github.com:CharlieBrownMx/employees-front.git

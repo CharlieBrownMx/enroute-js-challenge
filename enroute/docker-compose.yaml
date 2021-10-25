@@ -17,3 +17,9 @@ services:
       service: employees
     networks:
       - enroute
+  employees_front:
+    extends:
+      file: services/employees-front.yaml
+      service: employees_front
+    networks:
+      - enroute

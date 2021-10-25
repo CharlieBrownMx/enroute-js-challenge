@@ -1,0 +1,22 @@
+---
+version: "3"
+services:
+  employees_front:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ${BASE_DIRECTORY:-../..}/app/front/employees-front
+    image: employees-front-dev:latest
+    ports:
+      - published: 8080
+        target: 8080
+    volumes:
+      - ${BASE_DIRECTORY:-../..}/app/front/employees-front/app:/home/node/app
+      - /home/node/app/node_modules
+    environment:
+      NODE_ENV: development
+      PORT: 8080
+      HOST: 0.0.0.0
+    healthcheck:
+        test: ["CMD", "curl", "-I", "-f", "http://localhost:8080"]
+        timeout: 5s
+        retries: 10
