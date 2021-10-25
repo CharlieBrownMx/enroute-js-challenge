@@ -1,0 +1,25 @@
+---
+version: "3"
+services:
+  employees:
+    build:
+      dockerfile: Dockerfile.prod
+      context: ${BASE_DIRECTORY:-../../..}/app/backend/employees-service
+    image: employees-prod:latests
+    stop_signal: SIGINT
+    ports:
+      - published: 3000
+        target: 3000
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOST: 0.0.0.0
+      DB_HOSTNAME: db_test
+      MYSQL_DATABASE: employees
+      MYSQL_USER: enroute
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+        test: ["CMD", "curl", "-I", "-f", "http://localhost:3000/monitoring/livenessCheck"]
+        timeout: 5s
+        retries: 10

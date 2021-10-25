@@ -14,8 +14,8 @@ services:
     expose:
       - 3306
     volumes:
-      - ${BASE_DIRECTORY:-../..}/db/data:/var/lib/mysql
-      - ${BASE_DIRECTORY:-../..}/db/initdb.d:/docker-entrypoint-initdb.d
+      - ${BASE_DIRECTORY:-../../..}/db/data:/var/lib/mysql
+      - ${BASE_DIRECTORY:-../../..}/db/initdb.d:/docker-entrypoint-initdb.d
     healthcheck:
         test: ["CMD", "mysqladmin", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD" ,"ping", "-h", "localhost"]
         timeout: 10s
